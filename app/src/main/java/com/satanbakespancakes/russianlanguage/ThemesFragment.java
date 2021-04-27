@@ -50,7 +50,10 @@ public class ThemesFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rView = (RecyclerView) view.findViewById(R.id.themes_chooser_recycler);
-        DividerItemDecoration divider = new DividerItemDecoration(rView.getContext(), LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rView.setLayoutManager(llm);
+        DividerItemDecoration divider = new DividerItemDecoration(rView.getContext(), llm.getOrientation());
         rView.addItemDecoration(divider);
         initData();
         ThemesAdapter themesAdapter = new ThemesAdapter(view.getContext(), themes);
